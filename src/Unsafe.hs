@@ -1,21 +1,23 @@
 {-# LANGUAGE Unsafe #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Unsafe (
-  unsafeHead,
-  unsafeTail,
-  unsafeInit,
-  unsafeLast,
-  unsafeFromJust,
-  unsafeIndex,
-  unsafeThrow,
-) where
+module Unsafe
+    ( unsafeHead
+    , unsafeTail
+    , unsafeInit
+    , unsafeLast
+    , unsafeFromJust
+    , unsafeFromRight
+    , unsafeIndex
+    , unsafeThrow
+    )
+where
 
-import Protolude.Base (Int)
-import qualified Data.Either as Either
-import qualified Data.List as List
-import qualified Data.Maybe as Maybe
-import qualified Control.Exception as Exc
+import           Protolude.Base                 ( Int )
+import qualified Data.Either                   as Either
+import qualified Data.List                     as List
+import qualified Data.Maybe                    as Maybe
+import qualified Control.Exception             as Exc
 
 unsafeHead :: [a] -> a
 unsafeHead = List.head
@@ -33,7 +35,7 @@ unsafeFromJust :: Maybe.Maybe a -> a
 unsafeFromJust = Maybe.fromJust
 
 unsafeFromRight :: Either.Either e a -> a
-unsafeFromRight (Right a) = a
+unsafeFromRight (Either.Right a) = a
 
 unsafeIndex :: [a] -> Int -> a
 unsafeIndex = (List.!!)
